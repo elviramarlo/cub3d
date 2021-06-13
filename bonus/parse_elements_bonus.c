@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 23:47:48 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:35:17 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 14:33:06 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	parse_elements(t_cub *cub, char *line)
 	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' '
 		&& !cub->check.east)
 		parse_east(cub, line);
-	else if (line[0] == 'S' && line[1] == ' ' && !cub->check.sprite)
-		parse_sprite(cub, line);
-	/* else if (line[0] == 'R' && line[1] == ' ' && !cub->check.resol)
-		parse_resolution(cub, line); */
 	else if (line[0] == 'F' && line[1] == ' ' && !cub->check.floor)
 		parse_floor(cub, line);
 	else if (line[0] == 'C' && line[1] == ' ' && !cub->check.ceiling)

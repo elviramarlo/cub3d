@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:08:24 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:37:36 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 13:51:12 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,7 @@ void	parse_map(t_cub *cub, char *line)
 
 	i = 0;
 	if (!cub->check.north || !cub->check.south || !cub->check.east
-		|| !cub->check.west || !cub->check.sprite
-		|| !cub->check.floor || !cub->check.ceiling)
+		|| !cub->check.west || !cub->check.floor || !cub->check.ceiling)
 		print_error("Falta algún elemento antes del mapa");
 	if (line[0] == '\0' && cub->check.map_start)
 		cub->check.map_is_end++;

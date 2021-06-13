@@ -6,22 +6,22 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:20:08 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:34:08 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 14:27:56 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
-#define CUB_H
+# define CUB_H
 
-#include "../libft/libft.h"
-#include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 
-#include <math.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>
-#include <stdlib.h>
+# include <math.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
+# include <stdlib.h>
 
 # define K_ESC		53
 # define K_W		13
@@ -90,7 +90,7 @@ typedef struct s_fd
 	int	t_west;
 	int	t_south;
 	int	t_east;
-	int	t_sprite;
+	int	t_door;
 } t_fd;
 
 typedef struct s_key
@@ -159,7 +159,7 @@ typedef struct s_cub
 	char	*text_south;
 	char	*text_west;
 	char	*text_east;
-	char	*text_sprite;
+	char	*text_door;
 	int		color_f_r;
 	int		color_f_g;
 	int		color_f_b;
@@ -186,7 +186,7 @@ void	parse_west(t_cub *cub, char *line);
 void	parse_east(t_cub *cub, char *line);
 void	parse_ceiling(t_cub *cub, char *line);
 void	parse_floor(t_cub *cub, char *line);
-void	parse_sprite(t_cub *cub, char *line);
+void	texture_door(t_cub *cub);
 void	parse_resolution(t_cub *cub, char *line);
 void	parse_map(t_cub *cub, char *line);
 void	make_resolution(t_cub *cub);
@@ -201,8 +201,10 @@ int	key_release(int tecla, t_cub *cub);
 
 int		raycasting(t_cub *cub);
 void	keys(t_cub *cub);
+void	key_space(t_cub *cub);
 void draw_pixels(t_cub *cub, int x);
 void texturing_calculation(t_cub *cub);
+void	bonus_minimap(t_cub *cub);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 int		my_pixel_get(t_data *data, int x, int y);

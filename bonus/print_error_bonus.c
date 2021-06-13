@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   print_error_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:24:24 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:11:41 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 14:04:17 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	close_fds(t_cub *cub)
 	close(cub->fd.t_north);
 	close(cub->fd.t_south);
 	close(cub->fd.t_west);
-	close(cub->fd.t_sprite);
+	close(cub->fd.t_door);
 }

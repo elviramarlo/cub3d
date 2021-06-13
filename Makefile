@@ -6,7 +6,7 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/12 01:41:10 by elvmarti          #+#    #+#              #
-#    Updated: 2021/06/12 22:22:19 by elvmarti         ###   ########.fr        #
+#    Updated: 2021/06/13 14:25:50 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_BONUS = ./bonus/main_bonus.c \
 		./bonus/parse_resolution_bonus.c \
 		./bonus/parse_floor_bonus.c \
 		./bonus/parse_ceiling_bonus.c \
-		./bonus/parse_sprite_bonus.c \
+		./bonus/texture_door_bonus.c \
 		./bonus/print_error_bonus.c \
 		./bonus/rgb_bonus.c \
 		./bonus/parse_map_bonus.c \
@@ -57,7 +57,9 @@ SRCS_BONUS = ./bonus/main_bonus.c \
 		./bonus/raycasting_bonus.c \
 		./bonus/pixel_color_bonus.c \
 		./bonus/keys_bonus.c \
-		./bonus/draw_bonus.c
+		./bonus/draw_bonus.c \
+		./bonus/key_space_bonus.c \
+		./bonus/minimap_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 

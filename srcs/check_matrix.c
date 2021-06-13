@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 00:56:36 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/08 00:12:55 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/12 23:01:48 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	checkiar_mapa(t_cub *cub, int x, int y)
 {
 	while (cub->map.matrix[x])
 	{
-		printf("[%s]\n", cub->map.matrix[x]);
 		while (cub->map.matrix[x][y])
 		{
 			if ((cub->map.matrix[x][y] == '0' || cub->map.matrix[x][y] == '2')

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:08:24 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/08 00:04:25 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/12 23:02:24 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	map_matrix2(t_cub *cub, void *content)
 			cub->map.matrix[cub->map.matrix_act_line][i] = '0';
 		else if (str[i] == '1')
 			cub->map.matrix[cub->map.matrix_act_line][i] = '1';
-	/* 	else if (str[i] == '2')
-			cub->map.matrix[cub->map.matrix_act_line][i] = '2'; */
 		else if (str[i] == ' ')
 			cub->map.matrix[cub->map.matrix_act_line][i] = ' ';
 		else if (ft_strchr("NSWE", str[i]))

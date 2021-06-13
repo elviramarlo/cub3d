@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:21:02 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:36:04 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 13:56:11 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	read_fd(t_cub *cub)
 
 	while ((reading_fd(cub, &ret, &line)) >= 0)
 	{
-		if (cub->check.num_elems < 7)
+		if (cub->check.num_elems < 6)
 		{
 			parse_elements(cub, line);
 			free(line);

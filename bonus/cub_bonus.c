@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:34:07 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:07:25 by elvmarti         ###   ########.fr       */
+/*   Updated: 2021/06/13 14:05:14 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	textures(t_cub *cub)
 	text[1] = &cub->text_south;
 	text[2] = &cub->text_west;
 	text[3] = &cub->text_east;
-	text[4] = &cub->text_sprite;
+	text[4] = &cub->text_door;
 	i = 0;
 	while (i < 5)
 	{
@@ -95,9 +95,10 @@ void	start_cub(t_cub *cub)
 		print_error("Fallo al abrir la ventana");
 	cub->raycast.posX = cub->map.player_pos_x - 0.5;
 	cub->raycast.posY = cub->map.player_pos_y - 0.5;
-	cub->raycast.moveSpeed = 0.1;
+	cub->raycast.moveSpeed = 0.2;
 	cub->raycast.rotSpeed = 0.1;
 	orientation(cub);
+	texture_door(cub);
 	textures(cub);
 	hooks(cub);
 }
