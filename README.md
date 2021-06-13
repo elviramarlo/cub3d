@@ -1,13 +1,13 @@
 # cub3d
 
-make : compile
+<code>make</code> : compile
 
-make bonus : compile with bonus
+<code>make bonus</code> : compile with bonus
 
-./cub3D maps/*.cub 
+<code>./cub3D maps/*.cub</code> : run the program 
 
-Move with WSAD
+Move with <code>WSAD</code>
 
-Rotate with <- ->
+Rotate with <code><- -></code>
 
-Space to open and close a door
+<code>Space</code> to open and close a door
