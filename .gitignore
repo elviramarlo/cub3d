@@ -4,4 +4,4 @@ cub3D
 libmlx.dylib
 *.swiftdoc
 *.swiftmodule
-.DS_Stor
+.DS_Store
