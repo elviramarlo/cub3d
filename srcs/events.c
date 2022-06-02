@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:03:38 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 19:05:57 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:01:21 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	destroy(t_cub *cub)
 {
 	cub->text_east++;
-	system("leaks cub3D");
+	//system("leaks cub3D");
 	exit(0);
 	return (0);
 }

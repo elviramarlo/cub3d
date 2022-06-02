@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 15:31:49 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/02 11:48:17 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:36:54 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,43 @@
 
 static void	keys_rotate_right(t_cub *cub)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (cub->key.key_right)
 	{
-		oldDirX = cub->raycast.dirX;
-		cub->raycast.dirX = cub->raycast.dirX * cos(-cub->raycast.rotSpeed)
-			- cub->raycast.dirY * sin(-cub->raycast.rotSpeed);
-		cub->raycast.dirY = oldDirX * sin(-cub->raycast.rotSpeed)
-			+ cub->raycast.dirY * cos(-cub->raycast.rotSpeed);
-		oldPlaneX = cub->raycast.planeX;
-		cub->raycast.planeX = cub->raycast.planeX * cos(-cub->raycast.rotSpeed)
-			- cub->raycast.planeY * sin(-cub->raycast.rotSpeed);
-		cub->raycast.planeY = oldPlaneX * sin(-cub->raycast.rotSpeed)
-			+ cub->raycast.planeY * cos(-cub->raycast.rotSpeed);
+		old_dir_x = cub->raycast.dir_x;
+		cub->raycast.dir_x = cub->raycast.dir_x * cos(-cub->raycast.rot_speed)
+			- cub->raycast.dir_y * sin(-cub->raycast.rot_speed);
+		cub->raycast.dir_y = old_dir_x * sin(-cub->raycast.rot_speed)
+			+ cub->raycast.dir_y * cos(-cub->raycast.rot_speed);
+		old_plane_x = cub->raycast.plane_x;
+		cub->raycast.plane_x = cub->raycast.plane_x
+			* cos(-cub->raycast.rot_speed) - cub->raycast.plane_y
+			* sin(-cub->raycast.rot_speed);
+		cub->raycast.plane_y = old_plane_x * sin(-cub->raycast.rot_speed)
+			+ cub->raycast.plane_y * cos(-cub->raycast.rot_speed);
 	}
 }
 
 static void	keys_rotate_left(t_cub *cub)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (cub->key.key_left)
 	{
-		oldDirX = cub->raycast.dirX;
-		cub->raycast.dirX = cub->raycast.dirX * cos(cub->raycast.rotSpeed)
-			- cub->raycast.dirY * sin(cub->raycast.rotSpeed);
-		cub->raycast.dirY = oldDirX * sin(cub->raycast.rotSpeed)
-			+ cub->raycast.dirY * cos(cub->raycast.rotSpeed);
-		oldPlaneX = cub->raycast.planeX;
-		cub->raycast.planeX = cub->raycast.planeX * cos(cub->raycast.rotSpeed)
-			- cub->raycast.planeY * sin(cub->raycast.rotSpeed);
-		cub->raycast.planeY = oldPlaneX * sin(cub->raycast.rotSpeed)
-			+ cub->raycast.planeY * cos(cub->raycast.rotSpeed);
+		old_dir_x = cub->raycast.dir_x;
+		cub->raycast.dir_x = cub->raycast.dir_x * cos(cub->raycast.rot_speed)
+			- cub->raycast.dir_y * sin(cub->raycast.rot_speed);
+		cub->raycast.dir_y = old_dir_x * sin(cub->raycast.rot_speed)
+			+ cub->raycast.dir_y * cos(cub->raycast.rot_speed);
+		old_plane_x = cub->raycast.plane_x;
+		cub->raycast.plane_x = cub->raycast.plane_x
+			* cos(cub->raycast.rot_speed) - cub->raycast.plane_y
+			* sin(cub->raycast.rot_speed);
+		cub->raycast.plane_y = old_plane_x * sin(cub->raycast.rot_speed)
+			+ cub->raycast.plane_y * cos(cub->raycast.rot_speed);
 	}
 }
 
@@ -56,21 +58,21 @@ static void	keys_ws(t_cub *cub)
 {
 	if (cub->key.key_w)
 	{
-		if (cub->map.matrix[(int)(cub->raycast.posX + cub->raycast.dirX
-				* cub->raycast.moveSpeed)][(int)(cub->raycast.posY)] != '1')
-			cub->raycast.posX += cub->raycast.dirX * cub->raycast.moveSpeed;
-		if (cub->map.matrix[(int)(cub->raycast.posX)][(int)(cub->raycast.posY
-				+ cub->raycast.dirY * cub->raycast.moveSpeed)] != '1')
-			cub->raycast.posY += cub->raycast.dirY * cub->raycast.moveSpeed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x + cub->raycast.dir_x
+				* cub->raycast.move_speed)][(int)(cub->raycast.pos_y)] != '1')
+			cub->raycast.pos_x += cub->raycast.dir_x * cub->raycast.move_speed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x)][(int)(cub->raycast.pos_y
+				+ cub->raycast.dir_y * cub->raycast.move_speed)] != '1')
+			cub->raycast.pos_y += cub->raycast.dir_y * cub->raycast.move_speed;
 	}
 	if (cub->key.key_s)
 	{
-		if (cub->map.matrix[(int)(cub->raycast.posX - cub->raycast.dirX
-				* cub->raycast.moveSpeed)][(int)(cub->raycast.posY)] != '1')
-			cub->raycast.posX -= cub->raycast.dirX * cub->raycast.moveSpeed;
-		if (cub->map.matrix[(int)(cub->raycast.posX)][(int)(cub->raycast.posY
-				- cub->raycast.dirY * cub->raycast.moveSpeed)] != '1')
-			cub->raycast.posY -= cub->raycast.dirY * cub->raycast.moveSpeed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x - cub->raycast.dir_x
+				* cub->raycast.move_speed)][(int)(cub->raycast.pos_y)] != '1')
+			cub->raycast.pos_x -= cub->raycast.dir_x * cub->raycast.move_speed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x)][(int)(cub->raycast.pos_y
+				- cub->raycast.dir_y * cub->raycast.move_speed)] != '1')
+			cub->raycast.pos_y -= cub->raycast.dir_y * cub->raycast.move_speed;
 	}
 }
 
@@ -78,21 +80,25 @@ static void	keys_ad(t_cub *cub)
 {
 	if (cub->key.key_a)
 	{
-		if (cub->map.matrix[(int)(cub->raycast.posX - cub->raycast.planeX
-				* cub->raycast.moveSpeed)][(int)(cub->raycast.posY)] != '1')
-			cub->raycast.posX -= cub->raycast.planeX * cub->raycast.moveSpeed;
-		if (cub->map.matrix[(int)(cub->raycast.posX)][(int)(cub->raycast.posY
-				- cub->raycast.planeY * cub->raycast.moveSpeed)] != '1')
-			cub->raycast.posY -= cub->raycast.planeY * cub->raycast.moveSpeed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x - cub->raycast.plane_x
+				* cub->raycast.move_speed)][(int)(cub->raycast.pos_y)] != '1')
+			cub->raycast.pos_x -= cub->raycast.plane_x
+				* cub->raycast.move_speed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x)][(int)(cub->raycast.pos_y
+				- cub->raycast.plane_y * cub->raycast.move_speed)] != '1')
+			cub->raycast.pos_y -= cub->raycast.plane_y
+				* cub->raycast.move_speed;
 	}
 	if (cub->key.key_d)
 	{
-		if (cub->map.matrix[(int)(cub->raycast.posX + cub->raycast.planeX
-				* cub->raycast.moveSpeed)][(int)(cub->raycast.posY)] != '1')
-			cub->raycast.posX += cub->raycast.planeX * cub->raycast.moveSpeed;
-		if (cub->map.matrix[(int)(cub->raycast.posX)][(int)(cub->raycast.posY
-				+ cub->raycast.planeY * cub->raycast.moveSpeed)] != '1')
-			cub->raycast.posY += cub->raycast.planeY * cub->raycast.moveSpeed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x + cub->raycast.plane_x
+				* cub->raycast.move_speed)][(int)(cub->raycast.pos_y)] != '1')
+			cub->raycast.pos_x += cub->raycast.plane_x
+				* cub->raycast.move_speed;
+		if (cub->map.matrix[(int)(cub->raycast.pos_x)][(int)(cub->raycast.pos_y
+				+ cub->raycast.plane_y * cub->raycast.move_speed)] != '1')
+			cub->raycast.pos_y += cub->raycast.plane_y
+				* cub->raycast.move_speed;
 	}
 }
 

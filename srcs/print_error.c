@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:24:24 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 20:03:13 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:16:04 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_error(char *str)
 {
 	printf("\nError\n");
 	printf(RED "\n  %s\n"RESET, str);
-	system("leaks cub3D");
+	//system("leaks cub3D");
 	exit(1);
 }
 

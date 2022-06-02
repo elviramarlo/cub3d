@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 18:08:24 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/13 13:51:12 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:33:31 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,18 @@ void	parse_map(t_cub *cub, char *line)
 	i = 0;
 	if (!cub->check.north || !cub->check.south || !cub->check.east
 		|| !cub->check.west || !cub->check.floor || !cub->check.ceiling)
-		print_error("Falta algún elemento antes del mapa");
+		print_error("Some element is missing before the map");
 	if (line[0] == '\0' && cub->check.map_start)
 		cub->check.map_is_end++;
 	else if (line[0] != '\0')
 	{
 		cub->check.map_start = 1;
 		if (cub->check.map_is_end)
-			print_error("Hay información después de terminar el mapa");
+			print_error("There is content after the map");
 		while (line[i])
 		{
 			if (!ft_strchr(" 012NSEW", line[i]))
-				print_error("Caracter inválido en el mapa");
+				print_error("Invalid character on the map");
 			i++;
 		}
 		store_list_map(cub, line);

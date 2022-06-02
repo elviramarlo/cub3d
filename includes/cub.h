@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:20:08 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 20:26:59 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:54:41 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,14 @@ typedef struct s_key
 
 typedef struct s_raycast
 {
-	double	posX;
-	double	posY; //x and y start position
-	double	dirX;
-	double	dirY; //initial direction vector
-	double	planeX;
-	double	planeY; //the 2d raycaster version of camera plane
-	double	moveSpeed;
-	double	rotSpeed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 	int		drawstart;
 	int		drawend;
 	int		tex_num;
@@ -120,16 +120,15 @@ typedef struct s_raycast
 	double	raydir_x;
 	double	sidedist_x;
 	double	sidedist_y;
-	int		hit; //was there a wall hit?
-	int		side; //was a NS or a EW wall hit?
-	int		mapX;
-	int		mapY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	//what direction to step in x or y-direction (either +1 or -1)
-	int		stepX;
-	int		stepY;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
 	int		line_height;
 }				t_raycast;
 

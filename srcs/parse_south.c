@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:53:57 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 19:40:56 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:16:51 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	open_fd(t_cub *cub)
 {
 	cub->fd.t_south = open(cub->text_south, O_RDONLY);
 	if (cub->fd.t_south < 0)
-		print_error("Textura sur incorrecta");
+		print_error("Incorrect south texture");
 	cub->check.south++;
 	cub->check.num_elems++;
 }
@@ -35,7 +35,7 @@ void	parse_south(t_cub *cub, char *line)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '\0' && line[i] != ' ' && cub->text_south)
-			print_error("Demasiadas texturas sur");
+			print_error("Too many south textures");
 		if (line[i] != ' ')
 		{
 			x = i;

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 13:08:27 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/13 14:41:07 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:13:35 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	texturing_calculation(t_cub *cub)
 		cub->raycast.tex_num = 2;
 	else if (cub->raycast.side == 1 && cub->raycast.raydir_y > 0)
 		cub->raycast.tex_num = 3;
-	if (cub->map.matrix[cub->raycast.mapX][cub->raycast.mapY] == '2')
+	if (cub->map.matrix[cub->raycast.map_x][cub->raycast.map_y] == '2')
 		cub->raycast.tex_num = 4;
 	if (cub->raycast.side == 0)
-		wall_x = cub->raycast.posY + cub->raycast.perpWallDist
+		wall_x = cub->raycast.pos_y + cub->raycast.perp_wall_dist
 			* cub->raycast.raydir_y;
 	else
-		wall_x = cub->raycast.posX + cub->raycast.perpWallDist
+		wall_x = cub->raycast.pos_x + cub->raycast.perp_wall_dist
 			* cub->raycast.raydir_x;
 	wall_x -= floor((wall_x));
 	cub->raycast.tex_x = (int)(wall_x

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:21:02 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 20:12:44 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:17:55 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	read_fd(t_cub *cub)
 			break ;
 	}
 	if (ret < 0)
-		print_error("Fallo en la lectura del archivo");
+		print_error("Error reading the file");
 	iter_cub_list(cub, cub->map.list, map_matrix1);
 	check_matrix(cub);
 	make_resolution(cub);
@@ -54,11 +54,11 @@ static void	check_argv(char **argv)
 	while (argv[1][i] != '.')
 	{
 		if (argv[1][i] == '\0')
-			print_error("Argumento incorrecto");
+			print_error("Incorrect argument");
 		i++;
 	}
 	if (ft_strncmp(".cub", &argv[1][i], ft_strlen(argv[1])))
-		print_error("Argumento incorrecto");
+		print_error("Incorrect argument");
 }
 
 int	main(int argc, char **argv)
@@ -67,15 +67,15 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&cub, sizeof(t_cub));
 	if (argc < 2)
-		print_error("Faltan argumentos");
+		print_error("Too few arguments");
 	else if (argc > 2)
-		print_error("Demasiados argumentos");
+		print_error("Too many arguments");
 	else
 	{
 		check_argv(argv);
 		cub.fd.fd = open(argv[1], O_RDONLY);
 		if (cub.fd.fd < 0)
-			print_error("Fallo en la apertura");
+			print_error("Error opening the file");
 		read_fd(&cub);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:34:07 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/08 00:24:21 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:01:07 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	textures(t_cub *cub)
 		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx, *text[i],
 				&cub->width[i], &cub->height[i]);
 		if (!cub->textures[i].img)
-			print_error("Error con las texturas");
+			print_error("Error with textures");
 		cub->textures[i].addr = mlx_get_data_addr(cub->textures[i].img,
 				&cub->textures[i].bits_per_pixel, &cub->textures[i].line_length,
 				&cub->textures[i].endian);
@@ -51,17 +51,17 @@ static void	orientation2(t_cub *cub)
 {
 	if (cub->map.player_o == 'E')
 	{
-		cub->raycast.dirX = 0;
-		cub->raycast.dirY = 1;
-		cub->raycast.planeX = 0.66;
-		cub->raycast.planeY = 0;
+		cub->raycast.dir_x = 0;
+		cub->raycast.dir_y = 1;
+		cub->raycast.plane_x = 0.66;
+		cub->raycast.plane_y = 0;
 	}
 	if (cub->map.player_o == 'W')
 	{
-		cub->raycast.dirX = 0;
-		cub->raycast.dirY = -1;
-		cub->raycast.planeX = -0.66;
-		cub->raycast.planeY = 0;
+		cub->raycast.dir_x = 0;
+		cub->raycast.dir_y = -1;
+		cub->raycast.plane_x = -0.66;
+		cub->raycast.plane_y = 0;
 	}
 }
 
@@ -69,17 +69,17 @@ static void	orientation(t_cub *cub)
 {
 	if (cub->map.player_o == 'N')
 	{
-		cub->raycast.dirX = -1;
-		cub->raycast.dirY = 0;
-		cub->raycast.planeX = 0;
-		cub->raycast.planeY = 0.66;
+		cub->raycast.dir_x = -1;
+		cub->raycast.dir_y = 0;
+		cub->raycast.plane_x = 0;
+		cub->raycast.plane_y = 0.66;
 	}
 	if (cub->map.player_o == 'S')
 	{
-		cub->raycast.dirX = 1;
-		cub->raycast.dirY = 0;
-		cub->raycast.planeX = 0;
-		cub->raycast.planeY = -0.66;
+		cub->raycast.dir_x = 1;
+		cub->raycast.dir_y = 0;
+		cub->raycast.plane_x = 0;
+		cub->raycast.plane_y = -0.66;
 	}
 	orientation2(cub);
 }
@@ -88,14 +88,14 @@ void	start_cub(t_cub *cub)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
-		print_error("No se pudo inicializar la mlx");
+		print_error("Something went wrong with the MLX");
 	cub->window = mlx_new_window(cub->mlx, cub->eje_x, cub->eje_y, "CUB3D");
 	if (!cub->window)
-		print_error("Fallo al abrir la ventana");
-	cub->raycast.posX = cub->map.player_pos_x - 0.5;
-	cub->raycast.posY = cub->map.player_pos_y - 0.5;
-	cub->raycast.moveSpeed = 0.1;
-	cub->raycast.rotSpeed = 0.1;
+		print_error("Error opening the window");
+	cub->raycast.pos_x = cub->map.player_pos_x - 0.5;
+	cub->raycast.pos_y = cub->map.player_pos_y - 0.5;
+	cub->raycast.move_speed = 0.1;
+	cub->raycast.rot_speed = 0.1;
 	orientation(cub);
 	textures(cub);
 	hooks(cub);

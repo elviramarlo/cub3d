@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 01:10:29 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 20:15:20 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:34:32 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	make_resolution(t_cub *cub)
 	if (cub->eje_y < 0 || cub->eje_y > y)
 		cub->eje_y = y;
 	if (cub->eje_x < 50 || cub->eje_y < 50)
-		print_error("Resolución muy pequeña (mínimo 50 50)");
+		print_error("The minimum resolution is 50 50");
 }

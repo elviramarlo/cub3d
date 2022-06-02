@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:06:46 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/13 14:32:19 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:15:31 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_color(t_cub *cub, int i, int i2, int *color)
 		*color = 16044095;
 	else if (cub->map.matrix[i][i2] == '2')
 		*color = 5422720;
-	if ((int)cub->raycast.posX == i && (int)cub->raycast.posY == i2)
+	if ((int)cub->raycast.pos_x == i && (int)cub->raycast.pos_y == i2)
 		*color = 13321013;
 }
 

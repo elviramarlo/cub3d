@@ -6,12 +6,12 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 18:20:08 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/13 14:27:56 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:38:26 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef CUB_BONUS_H
+# define CUB_BONUS_H
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -47,7 +47,8 @@
 ** # define KEY_PRESS_MASK				(1L<<0)
 ** # define KEY_RELEASE_MAS				(1L<<1)
 */
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -69,14 +70,14 @@ typedef struct s_map
 
 typedef struct s_check
 {
-	int resol;
-	int north;
-	int south;
-	int east;
-	int west;
-	int sprite;
-	int floor;
-	int ceiling;
+	int	resol;
+	int	north;
+	int	south;
+	int	east;
+	int	west;
+	int	sprite;
+	int	floor;
+	int	ceiling;
 	int	num_elems;
 	int	map_start;
 	int	map_is_end;
@@ -85,35 +86,35 @@ typedef struct s_check
 
 typedef struct s_fd
 {
-	int fd;
+	int	fd;
 	int	t_north;
 	int	t_west;
 	int	t_south;
 	int	t_east;
 	int	t_door;
-} t_fd;
+}	t_fd;
 
 typedef struct s_key
 {
-	int key_w;
-	int key_a;
+	int	key_w;
+	int	key_a;
 	int	key_s;
 	int	key_d;
-	int key_left;
+	int	key_left;
 	int	key_right;
 	int	key_space;
-} t_key;
+}	t_key;
 
 typedef struct s_raycast
 {
-	double posX;
-	double posY;  //x and y start position
-	double dirX; 
-	double dirY; //initial direction vector
-	double planeX;
-	double planeY; //the 2d raycaster version of camera plane
-	double moveSpeed;
-	double	rotSpeed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	movespeed;
+	double	rot_speed;
 	int		drawstart;
 	int		drawend;
 	int		tex_num;
@@ -123,61 +124,57 @@ typedef struct s_raycast
 	double	step;
 	double	raydir_y;
 	double	raydir_x;
-	double sidedist_x;
-	double sidedist_y;
-	int hit; //was there a wall hit?
-	int side; //was a NS or a EW wall hit?
-	int mapX;
-	int mapY;
-	double deltaDistX;
-	double deltaDistY;
-	double perpWallDist;
-	//what direction to step in x or y-direction (either +1 or -1)
-	int stepX;
-	int stepY;
-	int line_height;
-} t_raycast;
+	double	sidedist_x;
+	double	sidedist_y;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		line_height;
+}	t_raycast;
 
 typedef struct s_cub
 {
-	void	*mlx;
-	void	*window;
-	t_map	map;
-	t_check	check;
-	t_fd	fd;
-	t_key	key;
+	void		*mlx;
+	void		*window;
+	t_map		map;
+	t_check		check;
+	t_fd		fd;
+	t_key		key;
 	t_raycast	raycast;
-	t_data	img; // Textura principal
-	t_data	textures[5]; // Texturas de pared
-	int		width[5];
-	int		height[5];
-	
+	t_data		img; // Textura principal
+	t_data		textures[5]; // Texturas de pared
+	int			width[5];
+	int			height[5];
 	//INFO GUARDADA DE LOS ELEMENTOS
-	int		eje_x; //resolución
-	int		eje_y; //resolución
-	char	*text_north;
-	char	*text_south;
-	char	*text_west;
-	char	*text_east;
-	char	*text_door;
-	int		color_f_r;
-	int		color_f_g;
-	int		color_f_b;
-	int		color_f_trgb;
-	int		color_c_r;
-	int		color_c_g;
-	int		color_c_b;
-	int		color_c_trgb;
-
+	int			eje_x; //resolución
+	int			eje_y; //resolución
+	char		*text_north;
+	char		*text_south;
+	char		*text_west;
+	char		*text_east;
+	char		*text_door;
+	int			color_f_r;
+	int			color_f_g;
+	int			color_f_b;
+	int			color_f_trgb;
+	int			color_c_r;
+	int			color_c_g;
+	int			color_c_b;
+	int			color_c_trgb;
 	//CADENAS DE LOS COLORES DE TECHO Y SUELO
-	char	*cfr;
-	char	*cfg;
-	char	*cfb;
-	char	*ccr;
-	char	*ccg;
-	char	*ccb;
-	
-} t_cub;
+	char		*cfr;
+	char		*cfg;
+	char		*cfb;
+	char		*ccr;
+	char		*ccg;
+	char		*ccb;
+}	t_cub;
 
 void	parse_elements(t_cub *cub, char *line);
 void	parse_north(t_cub *cub, char *line);
@@ -195,15 +192,15 @@ void	map_matrix1(t_cub *cub, void *content);
 void	check_matrix(t_cub *cub);
 
 void	start_cub(t_cub *cub);
-int destroy(t_cub *cub);
-int	key_press(int tecla, t_cub *cub);
-int	key_release(int tecla, t_cub *cub);
+int		destroy(t_cub *cub);
+int		key_press(int tecla, t_cub *cub);
+int		key_release(int tecla, t_cub *cub);
 
 int		raycasting(t_cub *cub);
 void	keys(t_cub *cub);
 void	key_space(t_cub *cub);
-void draw_pixels(t_cub *cub, int x);
-void texturing_calculation(t_cub *cub);
+void	draw_pixels(t_cub *cub, int x);
+void	texturing_calculation(t_cub *cub);
 void	bonus_minimap(t_cub *cub);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
@@ -212,12 +209,11 @@ int		my_pixel_get(t_data *data, int x, int y);
 void	print_error(char *str);
 void	close_fds(t_cub *cub);
 
-int    create_trgb(int t, int r, int g, int b);
-int    get_t(int trgb);
-int    get_r(int trgb);
-int    get_g(int trgb);
-int    get_b(int trgb);
-
+int		create_trgb(int t, int r, int g, int b);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 
 # define RESET				"\x1b[0m"
 # define WHITE				"\x1b[1m"

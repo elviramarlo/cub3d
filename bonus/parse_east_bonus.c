@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_east.c                                       :+:      :+:    :+:   */
+/*   parse_east_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 01:08:48 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:09:26 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:32:32 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	open_fd(t_cub *cub)
 {
 	cub->fd.t_east = open(cub->text_east, O_RDONLY);
 	if (cub->fd.t_east < 0)
-		print_error("Textura este incorrecta");
+		print_error("Incorrect east texture");
 	cub->check.east++;
 	cub->check.num_elems++;
 }
@@ -35,7 +35,7 @@ void	parse_east(t_cub *cub, char *line)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '\0' && line[i] != ' ' && cub->text_east)
-			print_error("Demasiadas texturas este");
+			print_error("Too many east textures");
 		if (line[i] != ' ')
 		{
 			x = i;

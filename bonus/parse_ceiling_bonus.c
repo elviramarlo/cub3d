@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 01:10:01 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:09:15 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:35:35 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	color_int(t_cub *cub)
 {
 	cub->color_c_r = ft_atoi(cub->ccr);
 	if (cub->color_c_r < 0 || cub->color_c_r > 255)
-		print_error("Valor del color del techo incorrecto");
+		print_error("Incorrect value of the color of the ceiling");
 	cub->color_c_g = ft_atoi(cub->ccg);
 	if (cub->color_c_g < 0 || cub->color_c_g > 255)
-		print_error("Valor del color del techo incorrecto");
+		print_error("Incorrect value of the color of the ceiling");
 	cub->color_c_b = ft_atoi(cub->ccb);
 	if (cub->color_c_b < 0 || cub->color_c_b > 255)
-		print_error("Valor del color del techo incorrecto");
+		print_error("Incorrect value of the color of the ceiling");
 	cub->color_c_trgb = create_trgb(0, cub->color_c_r,
 			cub->color_c_g, cub->color_c_b);
 	cub->check.ceiling++;
@@ -46,7 +46,7 @@ static void	color_string(t_cub *cub, char *line, int *i)
 	if (line[*i] == ',')
 		*i = *i + 1;
 	else if (line[*i] != ',' && line[*i])
-		print_error("Falta una coma entre los valores del techo");
+		print_error("A comma is missing between the ceiling values");
 	if (!cub->ccr)
 		cub->ccr = ft_substr(line, x, len);
 	else if (!cub->ccg)
@@ -68,9 +68,9 @@ void	parse_ceiling(t_cub *cub, char *line)
 		if (ft_isdigit(line[i]))
 			color_string(cub, line, &i);
 		if (line[i] != ' ' && line[i] && !(ft_isdigit(line[i])))
-			print_error("Caracteres inválidos en los datos del techo");
+			print_error("Invalid characters on the ceiling");
 	}
 	if (!cub->ccr || !cub->ccg || !cub->ccb)
-		print_error("Faltan datos del techo");
+		print_error("Ceiling information missing");
 	color_int(cub);
 }

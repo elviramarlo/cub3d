@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 23:47:48 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/07 20:08:01 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:14:12 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	parse_elements(t_cub *cub, char *line)
 	else if (line[0] == 'C' && line[1] == ' ' && !cub->check.ceiling)
 		parse_ceiling(cub, line);
 	else if (line[0] != '\0')
-		print_error("Argumentos incorrectos");
+		print_error("Wrong arguments");
 }

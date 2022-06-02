@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 13:08:27 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/08 16:44:29 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:56:49 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ static void	draw_walls(t_cub *cub, int x, int draw, int color)
 		draw++;
 	}
 }
-
-/**
-** Cast the texture coordinate to integer,
-** and mask with (texHeight - 1) in case of overflow
-**/
 
 void	draw_pixels(t_cub *cub, int x)
 {
@@ -54,7 +49,7 @@ void	draw_pixels(t_cub *cub, int x)
 }
 
 /**
-** calculate value of wallX
+** calculate value of wall_x
 ** How much to increase the texture coordinate per screen pixel
 ** Starting texture coordinate
 **/
@@ -75,7 +70,7 @@ static void	texturing_calculation_2(t_cub *cub)
 
 void	texturing_calculation(t_cub *cub)
 {
-	double	wallX;
+	double	wall_x;
 
 	if (cub->raycast.side == 0 && cub->raycast.raydir_x < 0)
 		cub->raycast.tex_num = 0;
@@ -86,13 +81,13 @@ void	texturing_calculation(t_cub *cub)
 	else if (cub->raycast.side == 1 && cub->raycast.raydir_y > 0)
 		cub->raycast.tex_num = 3;
 	if (cub->raycast.side == 0)
-		wallX = cub->raycast.posY + cub->raycast.perpWallDist
+		wall_x = cub->raycast.pos_y + cub->raycast.perp_wall_dist
 			* cub->raycast.raydir_y;
 	else
-		wallX = cub->raycast.posX + cub->raycast.perpWallDist
+		wall_x = cub->raycast.pos_x + cub->raycast.perp_wall_dist
 			* cub->raycast.raydir_x;
-	wallX -= floor((wallX));
-	cub->raycast.tex_x = (int)(wallX
+	wall_x -= floor((wall_x));
+	cub->raycast.tex_x = (int)(wall_x
 			* (double)(cub->width[cub->raycast.tex_num]));
 	texturing_calculation_2(cub);
 }

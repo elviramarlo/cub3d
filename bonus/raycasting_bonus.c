@@ -6,7 +6,7 @@
 /*   By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 20:48:50 by elvmarti          #+#    #+#             */
-/*   Updated: 2021/06/12 22:12:09 by elvmarti         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:35:10 by elvmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static void	calculate_hit(t_cub *cub)
 	{
 		if (cub->raycast.sidedist_x < cub->raycast.sidedist_y)
 		{
-			cub->raycast.sidedist_x += cub->raycast.deltaDistX;
-			cub->raycast.mapX += cub->raycast.stepX;
+			cub->raycast.sidedist_x += cub->raycast.delta_dist_x;
+			cub->raycast.map_x += cub->raycast.step_x;
 			cub->raycast.side = 0;
 		}
 		else
 		{
-			cub->raycast.sidedist_y += cub->raycast.deltaDistY;
-			cub->raycast.mapY += cub->raycast.stepY;
+			cub->raycast.sidedist_y += cub->raycast.delta_dist_y;
+			cub->raycast.map_y += cub->raycast.step_y;
 			cub->raycast.side = 1;
 		}
-		if (cub->map.matrix[cub->raycast.mapX][cub->raycast.mapY] == '1'
-			|| cub->map.matrix[cub->raycast.mapX][cub->raycast.mapY] == '2')
+		if (cub->map.matrix[cub->raycast.map_x][cub->raycast.map_y] == '1'
+			|| cub->map.matrix[cub->raycast.map_x][cub->raycast.map_y] == '2')
 			cub->raycast.hit = 1;
 	}
 }
@@ -49,12 +49,12 @@ static void	calculate_hit(t_cub *cub)
 static void	calculate_distance(t_cub *cub)
 {
 	if (cub->raycast.side == 0)
-		cub->raycast.perpWallDist = (cub->raycast.mapX - cub->raycast.posX
-				+ (1 - cub->raycast.stepX) / 2) / cub->raycast.raydir_x;
+		cub->raycast.perp_wall_dist = (cub->raycast.map_x - cub->raycast.pos_x
+				+ (1 - cub->raycast.step_x) / 2) / cub->raycast.raydir_x;
 	else
-		cub->raycast.perpWallDist = (cub->raycast.mapY - cub->raycast.posY
-				+ (1 - cub->raycast.stepY) / 2) / cub->raycast.raydir_y;
-	cub->raycast.line_height = (int)(cub->eje_y / cub->raycast.perpWallDist);
+		cub->raycast.perp_wall_dist = (cub->raycast.map_y - cub->raycast.pos_y
+				+ (1 - cub->raycast.step_y) / 2) / cub->raycast.raydir_y;
+	cub->raycast.line_height = (int)(cub->eje_y / cub->raycast.perp_wall_dist);
 	cub->raycast.drawstart = -cub->raycast.line_height / 2 + cub->eje_y / 2;
 	if (cub->raycast.drawstart < 0)
 		cub->raycast.drawstart = 0;
@@ -67,27 +67,27 @@ static void	calculate_steps(t_cub *cub)
 {
 	if (cub->raycast.raydir_x < 0)
 	{
-		cub->raycast.stepX = -1;
-		cub->raycast.sidedist_x = (cub->raycast.posX - cub->raycast.mapX)
-			* cub->raycast.deltaDistX;
+		cub->raycast.step_x = -1;
+		cub->raycast.sidedist_x = (cub->raycast.pos_x - cub->raycast.map_x)
+			* cub->raycast.delta_dist_x;
 	}
 	else
 	{
-		cub->raycast.stepX = 1;
-		cub->raycast.sidedist_x = (cub->raycast.mapX + 1.0 - cub->raycast.posX)
-			* cub->raycast.deltaDistX;
+		cub->raycast.step_x = 1;
+		cub->raycast.sidedist_x = (cub->raycast.map_x + 1.0
+				- cub->raycast.pos_x) * cub->raycast.delta_dist_x;
 	}
 	if (cub->raycast.raydir_y < 0)
 	{
-		cub->raycast.stepY = -1;
-		cub->raycast.sidedist_y = (cub->raycast.posY - cub->raycast.mapY)
-			* cub->raycast.deltaDistY;
+		cub->raycast.step_y = -1;
+		cub->raycast.sidedist_y = (cub->raycast.pos_y - cub->raycast.map_y)
+			* cub->raycast.delta_dist_y;
 	}
 	else
 	{
-		cub->raycast.stepY = 1;
-		cub->raycast.sidedist_y = (cub->raycast.mapY + 1.0 - cub->raycast.posY)
-			* cub->raycast.deltaDistY;
+		cub->raycast.step_y = 1;
+		cub->raycast.sidedist_y = (cub->raycast.map_y + 1.0
+				- cub->raycast.pos_y) * cub->raycast.delta_dist_y;
 	}
 }
 
@@ -101,12 +101,12 @@ static void	calculate_ray(t_cub *cub, int x)
 	double	cameraX;
 
 	cameraX = 2 * x / (double)(cub->eje_x) - 1;
-	cub->raycast.raydir_x = cub->raycast.dirX + cub->raycast.planeX * cameraX;
-	cub->raycast.raydir_y = cub->raycast.dirY + cub->raycast.planeY * cameraX;
-	cub->raycast.mapX = (int)(cub->raycast.posX);
-	cub->raycast.mapY = (int)(cub->raycast.posY);
-	cub->raycast.deltaDistX = fabs(1 / cub->raycast.raydir_x);
-	cub->raycast.deltaDistY = fabs(1 / cub->raycast.raydir_y);
+	cub->raycast.raydir_x = cub->raycast.dir_x + cub->raycast.plane_x * cameraX;
+	cub->raycast.raydir_y = cub->raycast.dir_y + cub->raycast.plane_y * cameraX;
+	cub->raycast.map_x = (int)(cub->raycast.pos_x);
+	cub->raycast.map_y = (int)(cub->raycast.pos_y);
+	cub->raycast.delta_dist_x = fabs(1 / cub->raycast.raydir_x);
+	cub->raycast.delta_dist_y = fabs(1 / cub->raycast.raydir_y);
 }
 
 int	raycasting(t_cub *cub)
