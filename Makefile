@@ -6,7 +6,7 @@
 #    By: elvmarti <elvmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/12 01:41:10 by elvmarti          #+#    #+#              #
-#    Updated: 2021/06/13 14:25:50 by elvmarti         ###   ########.fr        #
+#    Updated: 2022/06/02 17:24:17 by elvmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,25 +131,5 @@ LIGHT_PURPLE:="\033[1;35m"
 LIGHT_CYAN	:="\033[1;36m"
 WHITE		:="\033[1;37m"
 RESET		:="\x1b[0m"
-
-# VALGRIND
-#         --leak-check=full \ Each individual leak will be shown in detail
-#         --show-leak-kinds=all \ Show all of "definite, indirect, possible, reachable" leak kinds in the "full" report.
-#         --track-origins=yes \ Favor useful output over speed. This tracks the origins of uninitialized values, which could be very useful for memory errors. Consider turning off if Valgrind is unacceptably slow.
-#         --verbose \ Can tell you about unusual behavior of your program. Repeat for more verbosity.
-#         --log-file=valgrind-out.txt \ Write to a file. Useful when output exceeds terminal space.
-#         ./executable exampleParam1
-# @valgrind --leak-check=full --track-origins=yes --log-file=./resources/info/valgrind-out.txt ./cub3D resources/maps/map01.cub --save || true
-
-#Easily push content to our repo
-git:
-		@echo $(GREEN)Status:$(RESET)
-		@git status || true 
-		@echo $(GREEN)GIT add ... $(RESET)
-		@git add . || true 
-		@echo $(GREEN)GIT commit ... $(RESET)
-		@git commit -m "$(DAY)" || true 
-		@echo $(GREEN)GIT push ... $(RESET)
-		@git push -u origin master || true 
 						
-.PHONY: all clean fclean re
+.PHONY: all clean fclean bonus re
